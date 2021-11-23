@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter your name"
+        android:inputType="textPersonName" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="106dp"
+        app:srcCompat="@drawable/music" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Item"
+        android:textAlignment="textEnd"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/ItemsList"
+        android:layout_width="match_parent"
+        android:layout_height="27dp"
+        android:dropDownWidth="match_parent"
+        android:scrollbars="vertical"
+        android:spinnerMode="dropdown" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="290dp"
+        android:layout_height="84dp"
+        app:srcCompat="@drawable/guitar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="124dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="50dp"
+            android:text="Order Price" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="70dp"
+            android:text="Quantity" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="59dp"
+            android:layout_height="31dp"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="false"
+            android:layout_centerHorizontal="false"
+            android:layout_marginLeft="56dp"
+            android:layout_marginTop="19dp"
+            android:text="300$"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="41dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="130dp"
+            android:text="-" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:text="+" />
+
+        <TextView
+            android:id="@+id/quantityText"
+            android:layout_width="41dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="75dp"
+            android:text="0"
+            android:textAlignment="center"
+            android:textSize="28sp" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button5"
+        android:onClick="addToCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADD TO CART" />
+
+</LinearLayout>

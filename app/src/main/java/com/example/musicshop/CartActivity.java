@@ -15,19 +15,14 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         Intent cartIntent = getIntent();
         Bundle cartTransfer = cartIntent.getExtras();
-        Cart cart = new Cart (
-                cartTransfer.getString("Person"),
-                cartTransfer.getString("SelectedItem"),
-                cartTransfer.getInt("Quantity", 999),
-                cartTransfer.getInt("ItemPrice", 999),
-                cartTransfer.getInt("Price", 999)
-        );
+        Cart cart = cartTransfer.getParcelable(Cart.class.getSimpleName());
+
         TextView OrderInfo = findViewById(R.id.textView5);
-        OrderInfo.setText("Order Info\n" + cartTransfer.getString("Person" ) +
-                cartTransfer.getString("SelectedItem") +
-                cartTransfer.getInt("Quantity", 999) +
-                cartTransfer.getInt("ItemPrice", 999) +
-                cartTransfer.getInt("Price", 999));
+        OrderInfo.setText("Order Info\n" + cart.UserName +
+                "\n" + cart.Item +
+                "\n" + cart.ItemsQ +
+                "\n" + cart.ItemPrice +
+                "\n" + cart.OrderPrice);
         OrderInfo.setTextSize(23);
 
     }

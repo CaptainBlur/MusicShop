@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     String selectedItem;
     int itemPrice;
     int price;
+    Cart cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,16 +109,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void addToCart(View view) {
+        cart = new Cart (PersonName.getText().toString(), ItemsSpinner.getSelectedItem().toString(), quantity, itemPrice, price);
         Intent cartIntent = new Intent();
         ComponentName CartActivity = new ComponentName("com.example.musicshop", "com.example.musicshop.CartActivity");
         cartIntent.setComponent(CartActivity);
-        Bundle cartTransfer = new Bundle();
-        cartTransfer.putString("Person", PersonName.getText().toString());
-        cartTransfer.putString("SelectedItem", ItemsSpinner.getSelectedItem().toString());
-        cartTransfer.putInt("Quantity", quantity);
-        cartTransfer.putInt("ItemPrice", itemPrice);
-        cartTransfer.putInt("Price", price);
-        cartIntent.putExtras(cartTransfer);
+        cartIntent.putExtra (Cart.class.getSimpleName(), cart);
         startActivity(cartIntent);
 
 

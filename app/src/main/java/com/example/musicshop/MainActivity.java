@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     String selectedItem;
     int itemPrice;
     int price;
+    Cart cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +79,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        Button decreaceB = findViewById(R.id.button2);
-        decreaceB.isClickable();
-        decreaceB.setOnClickListener(new View.OnClickListener() {
+        Button decreaseB = findViewById(R.id.button2);
+        decreaseB.isClickable();
+        decreaseB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (quantity > 0) Quantity.setText("" + --quantity);
@@ -108,18 +109,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void addToCart(View view) {
+        cart = new Cart (PersonName.getText().toString(), ItemsSpinner.getSelectedItem().toString(), quantity, itemPrice, price);
         Intent cartIntent = new Intent();
         ComponentName CartActivity = new ComponentName("com.example.musicshop", "com.example.musicshop.CartActivity");
         cartIntent.setComponent(CartActivity);
-        Bundle cartTransfer = new Bundle();
-        cartTransfer.putString("Person", PersonName.getText().toString());
-        cartTransfer.putString("SelectedItem", ItemsSpinner.getSelectedItem().toString());
-        cartTransfer.putInt("Quantity", quantity);
-        cartTransfer.putInt("ItemPrice", itemPrice);
-        cartTransfer.putInt("Price", price);
-        cartIntent.putExtras(cartTransfer);
-        startActivity(cartIntent);
-
+        cartIntent.putExtra (Cart.class.getSimpleName(), cart); // обращение к конструктору (класса class), который возвращает имя класса
+        startActivity(cartIntent);                              // так как все интерфейсы и методы уже имплементированы в Cart, метод putExtra берёт название класса, его экземпляр, а
+                                                                // методы автоматически создают экхемпляр Parcelable и записывают в него нужные данные для передачи
 
     }
 }

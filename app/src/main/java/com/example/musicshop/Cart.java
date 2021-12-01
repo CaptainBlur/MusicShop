@@ -1,11 +1,29 @@
 package com.example.musicshop;
 
+import static androidx.room.OnConflictStrategy.REPLACE;
+
 import android.util.Log;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Dao;
+import androidx.room.Database;
+import androidx.room.Delete;
+import androidx.room.Entity;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.PrimaryKey;
+import androidx.room.Query;
+import androidx.room.RoomDatabase;
+import androidx.room.Update;
+
+import java.util.List;
+
+@Entity //создаём Сущность (таблицу) для базы данных, не отходя от кассы
 public class Cart implements Parcelable { // Parcelable - это интерфейс для классов, чьи экземпляры могет быть записаны и восстановленны
 
+    @PrimaryKey int id;
     String UserName;
     String Item;
     int ItemsQ;
@@ -54,4 +72,24 @@ public class Cart implements Parcelable { // Parcelable - это интерфе�
         dest.writeInt(OrderPrice);
 
     }
+//Room database setup
+   @Dao
+    public interface CartDao {
+        @Query ("SELECT * FROM cart") // пишем название таблицы со строчной буквы, потому что в sqlite не важен регистр
+        List<Cart> getAll (); //List - возвращаемое значение функции
+
+        @Query ("SELECT * FROM cart WHERE id = :id")
+        Cart getById (int id);
+
+        @Insert
+        void insert (Cart cart);
+
+        @Update
+        void update (Cart cart);
+
+        @Delete
+        void delete (Cart cart);
+    }
+
+
 }

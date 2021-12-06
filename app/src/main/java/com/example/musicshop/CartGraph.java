@@ -10,10 +10,12 @@ import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
 
-//@Component (dependencies = {}, modules = {AppModule.class, RoomModule.class})
+@Singleton
+@Component (dependencies = {}, modules = {AppModule.class, RoomModule.class})
 interface CartGraph {
-    //void inject (MainActivity mainActivity);
-    //CartDao cartDao();
+    void inject (MainActivity mainActivity);
+    CartDao cartDao();
+
 
 }
 
@@ -33,9 +35,12 @@ class AppModule {
 
 @Module
 class RoomModule {
+
     private CartDB cartDB;
-    public RoomModule (Application mApplication){
-        cartDB = Room.databaseBuilder(mApplication, CartDB.class, "cart_db").build();
+    private Application AppName;
+    public RoomModule (Application AppN){
+        AppName = AppN;
+        cartDB = Room.databaseBuilder(AppName, CartDB.class, "cart_db").build();
     }
 
     @Singleton

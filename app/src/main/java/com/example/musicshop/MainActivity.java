@@ -1,6 +1,7 @@
 package com.example.musicshop;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     ArrayList <String> Items;
@@ -33,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        DaggerCartGraph.builder().roomModule(new RoomModule(getApplication())).build();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView priceTV = findViewById(R.id.textView4);
@@ -90,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 priceTV.setText(price + "$");
             }
         });
-
     }
 
     @Override

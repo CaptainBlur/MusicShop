@@ -56,7 +56,7 @@ public class Cart implements Parcelable { // Parcelable - это интерфе�
         this.OrderPrice = price;
 
     }
-
+    Cart (){}
 
     @Override
     public int describeContents() {
@@ -72,24 +72,4 @@ public class Cart implements Parcelable { // Parcelable - это интерфе�
         dest.writeInt(OrderPrice);
 
     }
-//Room database setup
-   @Dao
-    public interface CartDao {
-        @Query ("SELECT * FROM cart") // пишем название таблицы со строчной буквы, потому что в sqlite не важен регистр
-        List<Cart> getAll (); //List - возвращаемое значение функции
-
-        @Query ("SELECT * FROM cart WHERE id = :id")
-        Cart getById (int id);
-
-        @Insert
-        void insert (Cart cart);
-
-        @Update
-        void update (Cart cart);
-
-        @Delete
-        void delete (Cart cart);
-    }
-
-
 }
